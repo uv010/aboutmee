@@ -1,0 +1,271 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa;
+  color: #2d3748;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+}
+/* Navbar Styles */
+.fixed-nav {
+    backdrop-filter: blur(8px);
+  }
+  
+  .navbar-hidden {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .navbar-visible {
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .nav-collapsed {
+    width: 72px !important;
+    border-radius: 36px !important;
+    overflow: hidden;
+  }
+  
+  .nav-expanded {
+    width: 100% !important;
+    border-radius: 32px !important;
+  }
+  
+  .mobile-menu {
+    transition: opacity 0.6s ease, height 0.6s ease;
+  }
+  
+  .mobile-menu.hidden {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .mobile-menu.visible {
+    opacity: 1;
+    height: 80vh;
+    background-color: white;
+  }
+  
+  .mobile-menu a:hover {
+    transform: scale(1.05);
+    color: #34d399;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.1);
+    color: #34d399;
+  }
+  
+  /* Ensure toggle button visibility */
+  #desktop-nav-toggle {
+    display: none;
+  }
+  
+  .nav-collapsed #desktop-nav-toggle {
+    display: flex;
+  }
+  
+  @media (max-width: 767px) {
+    .mobile-menu.visible {
+      height: auto;
+      max-height: 80vh;
+    }
+  }
+
+
+/* Cursor Follow  Styles */
+  .cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.2);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 999;
+    mix-blend-mode: screen;
+    transition: transform 0.1s ease;
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(6, 24, 52, 0.646);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 998;
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+/* Hero Styles */
+.gradient-text {
+  background: linear-gradient(90deg, #6c5ce7 0%, #fd79a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-model {
+  filter: drop-shadow(0 20px 30px rgba(108, 92, 231, 0.2));
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+
+
+/* Custom styles for portfolio SVG */
+.rotating-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.circle-container {
+  position: relative;
+  width: 256px;
+  height: 256px;
+}
+
+.circle-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+}
+
+
+/* Custom styles for skills section */
+.skill-separator {
+  display: inline-block;
+  width: 100px;
+  height: 70px;
+  position: relative;
+}
+
+.skill-separator::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  background-color: #e5e7eb;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Custom styles for project section */
+.progress-bar {
+  transform: scaleX(0);
+  transform-origin: center;
+  height: 10px;
+  background-color: #86efac;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+.project-image {
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-text {
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-image.visible,
+.project-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-title:hover {
+  transform: scaleX(1.05);
+  transition: transform 0.2s ease;
+}
+
+
+
+/* Experience Section Styles */
+.experience-item {
+  position: relative;
+  min-height: 100px;
+}
+
+.experience-dot {
+  top: 2rem;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .experience-item {
+    display: flex;
+  }
+
+  .experience-item:nth-child(odd) {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .experience-item:nth-child(even) {
+    justify-content: flex-end;
+    text-align: right;
+  }
+}
+
+
+/* Animation for timeline items */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-timeline {
+  animation: fadeInUp 0.6s ease-out forwards;
+}

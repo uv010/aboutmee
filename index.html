@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="YUVII" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Developer </title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Spline 3D Viewer -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Font Awesome 6 Free CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="overflow-x-hidden">
+    <!-- Navbar -->
+    <section id="navbar" class="fixed top-0 left-0 w-full z-50 navbar-visible">
+        <div class="absolute top-0 left-0 w-full h-[70px] px-4 pt-4 z-40">
+            <!-- Desktop Navbar -->
+            <div id="desktop-nav"
+                class="hidden md:flex h-full rounded-[32px] flex-row items-center border border-gray-300 justify-between relative bg-white/25 bg-opacity-90 backdrop-blur-md transition-all duration-500 ease-in-out nav-expanded">
+                <div id="desktop-nav-logo" class="flex-1/4 w-1/4 bg-opacity-90 flex items-center justify-start h-full">
+                    <a class="logo pl-6" href="#">
+                        <p class="font-semibold text-3xl text-gray-600 whitespace-nowrap">*Vinz</p>
+                    </a>
+                </div>
+                <div id="desktop-nav-links"
+                    class="flex-1/2 w-1/2 bg-opacity-90 flex justify-center h-full items-center">
+                    <ul class="m-0 p-0 list-none flex flex-nowrap justify-center">
+                        <li class="inline-block text-lg font-semibold mx-3"><a href="#home"
+                                class="no-underline  text-gray-600 hover:text-green-400 transition-colors">Home</a></li>
+                        <li class="inline-block text-lg font-semibold mx-3"><a href="#about"
+                                class="no-underline  text-gray-600 hover:text-green-400 transition-colors">About</a>
+                        </li>
+                        <li class="inline-block text-lg font-semibold mx-3"><a href="#experience"
+                                class="no-underline  text-gray-600 hover:text-green-400 transition-colors">Experience</a>
+                        </li>
+                        <li class="inline-block text-lg font-semibold mx-3"><a href="#projects"
+                                class="no-underline  text-gray-600 hover:text-green-400 transition-colors">Projects</a>
+                        </li>
+                        <li class="inline-block text-lg font-semibold mx-3"><a href="#contact"
+                                class="no-underline  text-gray-600 hover:text-green-400 transition-colors">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="desktop-nav-resume" class="flex-1/4 w-1/4 bg-opacity-90 flex justify-end h-full items-center">
+                    <div class="pr-6">
+                        <a href="#"
+                            class=" text-gray-600 px-6 py-3 rounded-[2rem] border border-gray-300 text-lg font-semibold flex items-center space-x-2 transition-transform duration-200 hover:bg-green-600 hover:text-gray-50">
+                            <span>Resume</span>
+                            <i class="fas fa-file-alt text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="desktop-nav-toggle"
+                    class="absolute left-0 top-0 w-[72px] h-full rounded-[36px] bg-transparent text-center text-white leading-[70px] flex justify-center items-center text-4xl transition-all duration-200 ease-in-out cursor-pointer z-50">
+                    <i class="fas fa-bars  text-gray-600"></i>
+                </div>
+            </div>
+            <!-- Mobile Navbar -->
+            <div class="block md:hidden">
+                <div
+                    class="flex items-center justify-between p-4 bg-opacity-90 text-gray-600 bg-white/80 backdrop:blur-sm shadow-md">
+                    <h1 class="text-3xl font-semibold p-2">*Vinz</h1>
+                    <button id="mobile-menu-toggle" class="p-0 bg-transparent text-gray-600 border-none text-4xl">
+                        <i class="fas fa-bars text-gray-600"></i>
+                    </button>
+                </div>
+                <div id="mobile-menu"
+                    class="mobile-menu hidden bg-gradient-to-br shadow-lg rounded-lg  flex-col justify-between p-8">
+                    <nav class="flex flex-col space-y-6 text-xl font-medium">
+                        <a href="#home" class="text-gray-600 transition-all duration-200">Home</a>
+                        <a href="#about" class="text-gray-600 transition-all duration-200">About</a>
+                        <a href="#experience" class="text-gray-600 transition-all duration-200">Experience</a>
+                        <a href="#projects" class="text-gray-600 transition-all duration-200">Projects</a>
+                        <a href="#contact" class="text-gray-600 transition-all duration-200">Contact</a>
+                    </nav>
+                    <div class="flex flex-col items-center space-y-6 mt-6">
+                        <a href="#"
+                            class="text-gray-600 rounded-[2rem] p-3 border border-gray-300 text-lg font-semibold flex items-center space-x-3 transition-transform duration-200 hover:bg-green-600">
+                            <span>Resume</span>
+                            <i class="fas fa-file-alt text-lg"></i>
+                        </a>
+                        <div class="text-center">
+                            <p class="text-gray-400 text-lg">Contactfor more information</p>
+                            <a href="tel:+917247629743"
+                                class="text-white hover:text-green-400 transition-colors duration-200 text-lg">(+91)
+                                724-762-9748*</a>
+                        </div>
+                        <div class="flex space-x-6 text-gray-600 text-3xl">
+                            <a href="https://github.com" class="social-icon transition-all duration-200"><i
+                                    class="fab fa-github"></i></a>
+                            <a href="https://linkedin.com" class="social-icon transition-all duration-200"><i
+                                    class="fab fa-linkedin"></i></a>
+                            <a href="https://whatsapp.com" class="social-icon transition-all duration-200"><i
+                                    class="fab fa-whatsapp"></i></a>
+                            <a href="https://instagram.com" class="social-icon transition-all duration-200"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Interactive Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <!-- Hero Section -->
+    <section id="home"
+        class="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 md:px-12 lg:px-24 py-12 mt-6">
+        <!-- 3D Model - Left Side -->
+        <div class="w-full lg:w-1/2 flex justify-center hero-model mb-10 lg:mb-0 floating overflow-hidden">
+            <spline-viewer url="https://prod.spline.design/iTO7mftOhPaHKO63/scene.splinecode"
+                class="w-full hCommitting changes... h-[350px] lg:h-[500px] scale-150"></spline-viewer>
+        </div>
+
+        <!-- Content - Right Side -->
+        <div class="w-full lg:w-1/2 lg:pl-12">
+            <div class="text-sm font-medium text-indigo-600 mb-4 opacity-0">HELLO, I'M</div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 opacity-0">
+                <span class="gradient-text">Vinz</span>
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-600 mb-6 opacity-0">
+                Frontend Developer
+            </h2>
+            <p class="text-lg text-gray-600 mb-8 max-w-lg opacity-0">
+                I create beautiful, responsive, and user-friendly web experiences using modern technologies like React,
+                Next.js, and Tailwind CSS.
+            </p>
+            <div class="flex flex-wrap gap-4 mb-12 opacity-0">
+                <a href="#projects"
+                    class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-indigo-500/20">
+                    View Projects
+                </a>
+                <a href="#contact"
+                    class="px-6 py-3 border-2 border-gray-200 hover:border-indigo-400 text-gray-700 hover:text-indigo-600 font-medium rounded-lg transition-all duration-300 hover:-translate-y-1">
+                    Contact Me
+                </a>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="opacity-0">
+                <p class="text-sm font-medium text-gray-500 mb-3">TECH STACK</p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">React</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">Next.js</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">JavaScript</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">TypeScript</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">Tailwind CSS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="projects" class="py-20 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row justify-between mb-16">
+                <div class="w-full lg:w-1/2 mb-8 lg:mb-0">
+                    <span class="text-gray-500 text-lg">Projects</span>
+                    <h3 class="text-4xl md:text-5xl font-bold mt-4 leading-tight">Practice makes <br> perfect.</h3>
+                    <p class="text-gray-500 mt-6 ml-16">
+                        One good work is better than countless bad ones. Not to be an
+                        assembly line employee, only to produce best crafted products.
+                    </p>
+                </div>
+                <div class="w-full lg:w-5/12 flex justify-center">
+                    <div class="circle-container">
+                        <svg class="rotating-text" viewBox="0 0 220 220" id="rotatingSvg">
+                            <path id="curve" d="M 110 110, m -90, 0 a 90,90 0 1,1 180,0 a 90,90 0 1,1 -180,0"
+                                fill="transparent" />
+                            <text>
+                                <textPath href="#curve" class="text-xl" font-size="16">
+                                    — Portfolio — Portfolio — Portfolio — Portfolio — Portfolio — Portfolio — Portfolio
+                                </textPath>
+                            </text>
+                        </svg>
+                        <div class="circle-content">
+                            <span class="text-4xl font-bold">1+</span>
+                            <p class="text-center mt-2">
+                                years of <br> Freelance & Development <br> experience
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="w-full h-96 flex flex-col p-4 border-t border-gray-200">
+        <div class="text-gray-500 text-xl text-center mb-12">"Every day I grind!"</div>
+
+        <div class="w-full h-[70px] overflow-hidden whitespace-nowrap mb-5" id="frontendTrack">
+            <div class="inline-flex" id="frontendSkills">
+                <!-- Frontend skills will be inserted here by JavaScript -->
+            </div>
+        </div>
+
+        <div class="w-full h-[70px] overflow-hidden whitespace-nowrap mb-5" id="backendTrack">
+            <div class="inline-flex" id="backendSkills">
+                <!-- Backend skills will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Project Section -->
+    <div id="Projects" class="relative">
+        <!-- Header with Progress Bar -->
+        <div class="sticky-header pt-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-orange-300">Featured Works</h1>
+            <div id="progressBar" class="mt-4 progress-bar mb-5"></div>
+        </div>
+
+        <!-- Project Items -->
+        <section>
+            <div
+                class="container flex flex-col md:flex-row justify-center items-center md:items-stretch mt-0 md:mt-24 gap-10 h-screen w-full overflow-hidden">
+                <div class="h-[350px] -mt-24 md:mt-0 w-[350px] project-image">
+                    <img src="resumecraft.png" alt="Resume Builder" class="h-[300px] w-full object-center">
+                </div>
+                <div
+                    class="textcontainer mt-8 md:mt-20 flex flex-col md:justify-center items-start h-[350px] w-[350px] project-text">
+                    <h2 class="text-3xl md:text-5xl font-semibold w-full project-title">Resume Builder AI</h2>
+                    <p class="text-lg md:text-lg pt-5 md:pt-10 w-full">Developed an AI-powered resume builder that
+                        leverages machine learning to provide tailored suggestions for job roles, skills, and project
+                        summaries, boosting user efficiency by 35%.</p>
+                    <div class="mt-3 md:mt-5 w-[95%] md:w-[95%]">
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">React</button>
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">Node.js</button>
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">PostgreSQL</button>
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">AI
+                            API</button>
+                    </div>
+                    <a href="https://resumescraft.netlify.app/">
+                        <button type="button"
+                            class="py-1 md:py-2 mt-3 md:mt-5 w-20 px-4 flex justify-center items-center gap-x-2 text-sm md:text-lg font-medium rounded-md md:rounded-lg border border-transparent bg-teal-100 text-teal-800 hover:bg-teal-200 focus:outline-none focus:bg-teal-200">Live</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div
+                class="container flex flex-col md:flex-row justify-center items-center md:items-stretch mt-0 md:mt-24 gap-10 h-screen w-full overflow-hidden">
+                <div class="h-[350px] -mt-24 md:mt-0 w-[350px] project-image">
+                    <img src="easybank.png" alt="Banking App" class="h-[300px] w-full object-center">
+                </div>
+                <div
+                    class="textcontainer mt-8 md:mt-20 flex flex-col md:justify-center items-start h-[350px] w-[350px] project-text">
+                    <h2 class="text-3xl md:text-5xl font-semibold w-full project-title">Secure Banking App</h2>
+                    <p class="text-lg md:text-lg pt-5 md:pt-10 w-full">Built a robust banking platform with role-based
+                        access for admins, employees, and users, streamlining account management and reducing processing
+                        time by 45%.</p>
+                    <div class="mt-3 md:mt-5 w-[95%] md:w-[95%]">
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">Vue.js</button>
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">Spring
+                            Boot</button>
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">MySQL</button>
+                    </div>
+                    <a href="https://easy-bank.up.railway.app/index">
+                        <button type="button"
+                            class="py-1 md:py-2 mt-3 md:mt-5 w-20 px-4 flex justify-center items-center gap-x-2 text-sm md:text-lg font-medium rounded-md md:rounded-lg border border-transparent bg-teal-100 text-teal-800 hover:bg-teal-200 focus:outline-none focus:bg-teal-200">Live</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div
+                class="container flex flex-col md:flex-row justify-center items-center md:items-stretch mt-0 md:mt-24 gap-10 h-screen w-full overflow-hidden">
+                <div class="h-[350px] -mt-24 md:mt-0 w-[350px] project-image">
+                    <img src="fashionnest.png" alt="eCommerce Platform" class="h-[300px] w-full object-center">
+                </div>
+                <div
+                    class="textcontainer mt-8 md:mt-20 flex flex-col md:justify-center items-start h-[350px] w-[350px] project-text">
+                    <h2 class="text-3xl md:text-5xl font-semibold w-full project-title">Trendy Store</h2>
+                    <p class="text-lg md:text-lg pt-5 md:pt-10 w-full">Created a modern eCommerce platform with enhanced
+                        product filtering, real-time inventory updates, and seamless order tracking, increasing user
+                        engagement by 30%.</p>
+                    <div class="mt-3 md:mt-5 w-[95%] md:w-[95%]">
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">React</button>
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">Express.js</button>
+                        <button type="button"
+                            class="text-gray-500 bg-transparent border border-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl text-xs md:text-sm px-5 py-1.5 mr-2 mb-2">MongoDB</button>
+                    </div>
+                    <a href="https://fashionnestt.netlify.app/">
+                        <button type="button"
+                            class="py-1 md:py-2 mt-3 md:mt-5 w-20 px-4 flex justify-center items-center gap-x-2 text-sm md:text-lg font-medium rounded-md md:rounded-lg border border-transparent bg-teal-100 text-teal-800 hover:bg-teal-200 focus:outline-none focus:bg-teal-200">Live</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 opacity-0">
+                <span class="text-sm font-medium text-indigo-600">MY JOURNEY</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Professional <span
+                        class="gradient-text">Experience</span></h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Here's a timeline of my professional journey and key
+                    milestones in my career.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical line -->
+                <div
+                    class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-indigo-200 to-purple-200 opacity-0">
+                </div>
+
+                <!-- Experience Items - Alternating Left/Right/Left -->
+                <div class="space-y-12">
+                    <!-- Experience 1 - Left -->
+                    <div class="relative experience-item opacity-0">
+                        <div
+                            class="experience-dot absolute left-1/2 transform -translate-x-1/2 h-5 w-5 rounded-full bg-indigo-600 border-4 border-white shadow-lg">
+                        </div>
+                        <div class="md:w-1/2 md:pr-8 lg:pr-12">
+                            <div
+                                class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <span class="text-sm font-medium text-indigo-600">Jan 2023 - Present</span>
+                                <h3 class="text-xl font-bold mt-2 mb-3">Senior Frontend Developer</h3>
+                                <h4 class="text-lg font-semibold text-gray-700 mb-4">Tech Innovations Inc.</h4>
+                                <p class="text-gray-600 mb-4">Led a team of 5 developers to build responsive web
+                                    applications using React and Next.js. Improved performance by 40% through code
+                                    optimization.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-medium">React</span>
+                                    <span
+                                        class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-medium">Next.js</span>
+                                    <span
+                                        class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-medium">TypeScript</span>
+                                    <span
+                                        class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-medium">Team
+                                        Lead</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 - Right -->
+                    <div class="relative experience-item opacity-0 flex justify-end">
+                        <div
+                            class="experience-dot absolute left-1/2 transform -translate-x-1/2 h-5 w-5 rounded-full bg-purple-600 border-4 border-white shadow-lg">
+                        </div>
+                        <div class="md:w-1/2 md:pl-8 lg:pl-12">
+                            <div
+                                class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <span class="text-sm font-medium text-purple-600">Mar 2021 - Dec 2022</span>
+                                <h3 class="text-xl font-bold mt-2 mb-3">Frontend Developer</h3>
+                                <h4 class="text-lg font-semibold text-gray-700 mb-4">Digital Solutions Co.</h4>
+                                <p class="text-gray-600 mb-4">Developed and maintained 10+ client websites using modern
+                                    JavaScript frameworks. Implemented accessibility standards across all projects.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">JavaScript</span>
+                                    <span
+                                        class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Vue.js</span>
+                                    <span
+                                        class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Tailwind
+                                        CSS</span>
+                                    <span
+                                        class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">UX/UI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 3 - Left -->
+                    <div class="relative experience-item opacity-0">
+                        <div
+                            class="experience-dot absolute left-1/2 transform -translate-x-1/2 h-5 w-5 rounded-full bg-pink-600 border-4 border-white shadow-lg">
+                        </div>
+                        <div class="md:w-1/2 md:pr-8 lg:pr-12">
+                            <div
+                                class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <span class="text-sm font-medium text-pink-600">Jun 2019 - Feb 2021</span>
+                                <h3 class="text-xl font-bold mt-2 mb-3">Junior Web Developer</h3>
+                                <h4 class="text-lg font-semibold text-gray-700 mb-4">Web Craft Studios</h4>
+                                <p class="text-gray-600 mb-4">Built responsive websites from design mockups.
+                                    Collaborated
+                                    with designers to implement pixel-perfect UIs with CSS animations.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs font-medium">HTML/CSS</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs font-medium">jQuery</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs font-medium">Bootstrap</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs font-medium">WordPress</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative h-screen py-20 px-6 bg-black overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-20 left-10 w-40 h-40 rounded-full bg-indigo-900 blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-purple-900 blur-3xl"></div>
+        </div>
+
+        <div class="w-screen mx-auto relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <!--  3D Robot -->
+                <div class="w-full flex justify-center absolute">
+                    <div class="relative w-screen h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                        <spline-viewer url="https://prod.spline.design/KkfVCGEuSldacnYD/scene.splinecode"
+                            class="w-full h-full hidden md:block translate-x-96 scale-75 " loading-anim mouse-drag
+                            touch-action="pan-y"></spline-viewer>
+
+                    </div>
+                </div>
+
+                <!-- Right Column - Contact Form -->
+                <div class="w-[80%] -ml-10  md:w-[25%] md:ml-60">
+                    <div class="text-center lg:text-left mb-10 opacity-0">
+                        <span class="text-sm font-medium text-indigo-400">GET IN TOUCH</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">Contact <span
+                                class="gradient-text">Me</span></h2>
+                        <p class="text-lg text-gray-300">Have a project in mind or want to connect? Send me a message
+                            and
+                            I'll get back to you soon.</p>
+                    </div>
+
+                    <form class="space-y-6 opacity-0">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 transition-all outline-none"
+                                    placeholder="Your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 transition-all outline-none"
+                                    placeholder="your.email@example.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 transition-all outline-none"
+                                placeholder="What's this about?">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" required
+                                class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 transition-all outline-none"
+                                placeholder="Your message here..."></textarea>
+                        </div>
+                        <div class="pt-2">
+                            <button type="submit"
+                                class="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                </svg>
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Social Links -->
+                    <div class="mt-12 flex flex-wrap justify-center lg:justify-start gap-4 opacity-0">
+                        <a href="#"
+                            class="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-indigo-400 hover:border-indigo-500 transition-all hover:-translate-y-1 shadow-sm">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-indigo-400 hover:border-indigo-500 transition-all hover:-translate-y-1 shadow-sm">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-indigo-400 hover:border-indigo-500 transition-all hover:-translate-y-1 shadow-sm">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-indigo-400 hover:border-indigo-500 transition-all hover:-translate-y-1 shadow-sm">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="navbar.js"></script>
+    <script src="cursorfollow.js"></script>
+    <script src="hero.js"></script>
+    <script src="animatecircle.js"></script>
+    <script src="skills.js"></script>
+    <script src="project.js"></script>
+    <script src="experience.js"></script>
+    <script src="contact.js"></script>
+</body>
+
+</html>
